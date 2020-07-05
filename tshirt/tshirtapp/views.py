@@ -17,3 +17,10 @@ def signup(request):
 
     }
     return render(request,'tshirtapp/signup.html',context1 )
+
+def login(request):
+
+    context2 = {
+
+    }
+    return render(request,'tshirtapp/login.html',context2)
