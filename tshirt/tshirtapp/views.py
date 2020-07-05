@@ -11,3 +11,9 @@ def index(request):
     }
     return render(request, 'tshirtapp/index.html', context)
 
+def signup(request):
+
+    context1 = {
+
+    }
+    return render(request,'tshirtapp/signup.html',context1 )
