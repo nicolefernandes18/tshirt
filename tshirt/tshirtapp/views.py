@@ -1,5 +1,6 @@
 from django.shortcuts import render,redirect
 from .models import Tshirt
+from django.contrib.auth.models import auth
 
 # Create your views here.
 def index(request):
@@ -43,7 +44,20 @@ def signup(request):
 
 def login(request):
 
-    context2 = {
+    if request.method == 'POST':
+        email = request.POST['email']
+        password = request.POST['password']
 
-    }
-    return render(request,'tshirtapp/login.html',context2)
+        tshirt_obj = auth.authenticate(Email=email, Password=password)
+
+        if tshirt_obj is not None:
+            auth.login(request, tshirt)
+            return redirect('index')
+        else:
+            print('Invalid credentials')
+            return redirect('login')
+    else:
+        context2 = {
+
+        }
+        return render(request,'tshirtapp/login.html',context2)

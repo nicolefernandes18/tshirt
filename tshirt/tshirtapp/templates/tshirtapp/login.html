@@ -4,10 +4,13 @@
     </head>
     <body>
         <h3>Login Page</h3>
-        <label>Username:</label>
-        <input type="text"><br><br>
-        <label>Password:</label>
-        <input type="password"><br><br>
-        <input type="submit" value="Submit">
+        <form action="login" method="post">
+            {% csrf_token %}
+            <label>Email:</label>
+            <input type="email" name="email" placeholder="email"><br><br>
+            <label>Password:</label>
+            <input type="password" name="password" placeholder="password"><br><br>
+            <input type="submit" value="Submit">
+        </form>
     </body>
 </html>
