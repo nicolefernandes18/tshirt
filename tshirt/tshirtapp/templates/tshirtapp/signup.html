@@ -4,13 +4,14 @@
     </head>
     <body>
         <h1>SIGNUP FORM</h1>
-        <form>
+        <form action="signup" method="POST">
+            {% csrf_token %}
             First Name: <input type='text' name='firstname'/><br/></br>
             Last Name: <input type='text' name='lastname'/></br></br>
             Email: <input type='email' name='email'/><br/></br>
-            Password: <input type='password' name='firstname'/><br/></br>
-            Confirm Password: <input type='password' name='firstname'/><br/></br>
-            <input type='submit' value="Submit"
+            Password: <input type='password' name='password'/><br/></br>
+            Confirm Password: <input type='password' name='cpassword'/><br/></br>
+            <input type='submit' value="Submit"/>
         </form>
     </body>
 </html>

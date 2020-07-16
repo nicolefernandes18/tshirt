@@ -8,3 +8,5 @@ class Tshirt(models.Model):
     Email =  models.CharField(max_length=100)
     Password = models.CharField(max_length=100)
     ConfirmPassword = models.CharField(max_length=100)
+
+    
