@@ -27,7 +27,7 @@ def signup(request):
             elif User.objects.filter(email=email).exists():
                 print('Email taken')
             else:
-                user = User.objects.create_user(username=username, password=password)
+                user = User.objects.create_user(username=username, first_name=firstname,last_name=lastname,email=email, password=password)
                 user.save()
                 print('CREATED')
         else:
