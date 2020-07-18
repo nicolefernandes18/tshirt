@@ -33,7 +33,7 @@ def signup(request):
         else:
             print("Password not matching..")
 
-        return redirect('index')
+        return redirect('login')
 
     else:
     
@@ -44,25 +44,21 @@ def signup(request):
 
 def login(request):
 
-    """
+    
     if request.method == 'POST':
-        email = request.POST['email']
+        username = request.POST['username']
         password = request.POST['password']
 
-        #tshirt_obj = Tshirt( Email=email )
+        user = auth.authenticate(username=username, password=password)
 
-        
-        #tshirt_obj = auth.authenticate(Email=email, Password=password)
-
-        if tshirt_obj is not None:
-            auth.login(request, tshirt)
+        if user is not None:
+            auth.login(request, user)
             return redirect('index')
         else:
             print('Invalid credentials')
-            
-        return redirect('login')
+            return redirect('login')
     else:
-    """
-    context2 = {
-    }
-    return render(request,'tshirtapp/login.html',context2)
+    
+        context2 = {
+        }
+        return render(request,'tshirtapp/login.html',context2)

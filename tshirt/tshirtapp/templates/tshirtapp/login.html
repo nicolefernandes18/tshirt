@@ -6,8 +6,8 @@
         <h3>Login Page</h3>
         <form action="login" method="post">
             {% csrf_token %}
-            <label>Email:</label>
-            <input type="email" name="email" placeholder="email"><br><br>
+            <label>Username:</label>
+            <input type="text" name="username" placeholder="username"><br><br>
             <label>Password:</label>
             <input type="password" name="password" placeholder="password"><br><br>
             <input type="submit" value="Submit">
