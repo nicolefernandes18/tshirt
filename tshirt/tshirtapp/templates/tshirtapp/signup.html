@@ -14,5 +14,11 @@
             Confirm Password: <input type='password' name='cpassword'/><br/></br>
             <input type='submit' value="Submit"/>
         </form>
+
+        <div>
+            {% for message in messages %}
+            <h6>{{message}}</h6>
+            {% endfor %}
+        </div>
     </body>
 </html>

@@ -1,5 +1,6 @@
 from django.shortcuts import render,redirect
 from .models import Tshirt
+from django.contrib import messages
 from django.contrib.auth.models import User , auth
 
 # Create your views here.
@@ -23,17 +24,20 @@ def signup(request):
         
         if password==cpassword:
             if User.objects.filter(username=username).exists():
-                print("Username taken")
+                messages.info(request,'Username taken')
+                return redirect('signup')
             elif User.objects.filter(email=email).exists():
-                print('Email taken')
+                messages.info(request,'Email taken')
+                return redirect('signup')
             else:
                 user = User.objects.create_user(username=username, first_name=firstname,last_name=lastname,email=email, password=password)
                 user.save()
                 print('CREATED')
+                return redirect('login')
         else:
-            print("Password not matching..")
+            messages.info(request,'Password not matching..')
 
-        return redirect('login')
+        return redirect('signup')
 
     else:
     
