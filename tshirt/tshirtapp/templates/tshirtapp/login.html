@@ -1,16 +1,20 @@
+{% load static %}
 <html>
     <head>
-
+        <title>Login</title>
+        <link rel="stylesheet" type="text/css" href="{% static 'tshirtapp/style.css' %}">
     </head>
     <body>
-        <h3>Login Page</h3>
-        <form action="login" method="post">
+        <form action="login" action="login" method="post">
             {% csrf_token %}
-            <label>Username:</label>
-            <input type="text" name="username" placeholder="username"><br><br>
-            <label>Password:</label>
-            <input type="password" name="password" placeholder="password"><br><br>
-            <input type="submit" value="Submit">
+            <div class='form-box'>
+				<img src="{% static 'tshirtapp/logo.jpg' %}">
+				<h1>Login</h1>
+				<input type="text" name="username" placeholder="Username">
+				<input type="password" name="password" placeholder="Password">
+                <input type="submit" value="Login">
+                or Signup using <a href="signup">Signup</a>
+			</div>
         </form>
     </body>
 </html>
