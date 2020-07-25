@@ -1,24 +1,27 @@
+{% load static %}
 <html>
     <head>
-
+        <title>Signup</title>
+        <link rel="stylesheet" type="text/css" href="{% static 'tshirtapp/style.css' %}">
     </head>
     <body>
-        <h1>SIGNUP FORM</h1>
-        <form action="signup" method="POST">
-            {% csrf_token %}
-            First Name: <input type='text' name='firstname'/><br/></br>
-            Last Name: <input type='text' name='lastname'/></br></br>
-            Username: <input type='text' name='username'/></br></br>
-            Email: <input type='email' name='email'/><br/></br>
-            Password: <input type='password' name='password'/><br/></br>
-            Confirm Password: <input type='password' name='cpassword'/><br/></br>
-            <input type='submit' value="Submit"/>
-        </form>
-
-        <div>
+                <form class="box" action="signup" method="POST">
+                {% csrf_token %}
+                <img src="{% static 'tshirtapp/logo.jpg' %}">
+                <h1>Signup </h1>
+                <input type='text' name='firstname' placeholder="First Name" /><br/> </br>
+                <input type='text' name='lastname' placeholder="Last Name" /></br></br>
+                <input type='text' name='username' placeholder="Username" /></br></br>
+                <input type='email' name='email' placeholder="Email" /><br/></br>
+                <input type='password' name='password' placeholder="Password" /><br/>
+                    </br>
+                <input type='password' name='cpassword'placeholder="Confirm Password"/><br/></br>
+                <input type='submit' value="Register"/>
+                </form>
+            <div>
             {% for message in messages %}
-            <h6>{{message}}</h6>
+            <h2>{{message}}</h2>
             {% endfor %}
-        </div>
+            </div>
     </body>
 </html>
