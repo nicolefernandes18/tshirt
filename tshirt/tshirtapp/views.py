@@ -1,5 +1,5 @@
 from django.shortcuts import render,redirect
-from .models import Tshirt
+#from .models import Tshirt
 from django.contrib import messages
 from django.contrib.auth.models import User , auth
 

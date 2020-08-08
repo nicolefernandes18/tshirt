@@ -113,3 +113,38 @@ body{
 .form-box input[type = "submit"]:hover{
 	background: #2ecc71;
 }
+
+.navbar-nav a:hover{
+    color:black;
+    background-color: #df9142;
+}
+
+header{
+    background-image:linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)),url(BGimg_home.jpg);
+    height: 100vh;
+    background-size: cover;
+    background-position: center;
+}
+
+.title{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%); 
+}
+
+.title h1{
+    color: white;
+    font-size: 70px;
+    font-family:  'Trebuchet MS' ;
+    
+}
+
+h3{
+    position: absolute;
+    top: 60%;
+    left: 50%;
+    transform: translate(-50%,-50%); 
+    color: white;
+    font-style: oblique;
+}

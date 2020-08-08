@@ -3,15 +3,15 @@ from django.db import models
 
 # Create your models here.
 
-class Tshirt(models.Model):
+#class Men(models.Model):
 
 
-    FirstName = models.CharField(max_length=100)
-    LastName =  models.CharField(max_length=100)
-    Username = models.CharField(max_length=100)
-    Email =  models.EmailField(max_length=100,unique=True)
-    Password = models.CharField(max_length=100)
-    ConfirmPassword = models.CharField(max_length=100)
+    #Name = models.CharField(max_length=100)
+    #Brand =  models.CharField(max_length=100)
+    #Size = models.CharField(max_length=100)
+    #Price =  models.CharField(max_length=100)
+    #Image= models.CharField(max_length=100)
+    
 
     
 
