@@ -1,0 +1,12 @@
+<html>
+    <body>
+    {% for menobj in menobjs %}
+
+    <img src="{{menobj.Image}}" >
+    <h3>{{menobj.Name}}</h3>
+    <h3>{menobj.Brand}}</h3>{
+    <h3>{menobj.Size}}</h3>{
+    <h3>{{menobj.Price}}</h3>
+    {% endfor %}
+    </body>
+</html>

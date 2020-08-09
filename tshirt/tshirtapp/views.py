@@ -1,5 +1,5 @@
 from django.shortcuts import render,redirect
-#from .models import Tshirt
+from .models import Men
 from django.contrib import messages
 from django.contrib.auth.models import User , auth
 
@@ -66,3 +66,9 @@ def login(request):
         context2 = {
         }
         return render(request,'tshirtapp/login.html',context2)
+
+def mencategory(request):
+
+    menobjs = Men.objects.all()
+
+    return render(request, 'mencategory.html', {'menobjs': menobjs})
