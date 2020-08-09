@@ -10,18 +10,31 @@
       <header>
       <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <img src="{% static 'tshirtapp/icon.jpg' %}">
-        <a class="navbar-brand" href="#">TheTshirtShack</a>
+        <a class="navbar-brand" href="#">TheTshirtShack<span class="sr-only">(current)</span></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div class="navbar-nav">
             <a class="nav-item nav-link active" href="#">Home <span class="sr-only">(current)</span></a>
-            <a class="nav-item nav-link" href="#">Features</a>
-            <a class="nav-item nav-link" href="#">Pricing</a>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Category
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="mencategory">Men</a>
+                <a class="dropdown-item" href="women">Women</a>
+              </div>
+            </li>
+            
            
           </div>
+          
         </div>
+        <div class="form-inline my-2 my-lg-0">
+          <img src="{% static 'tshirtapp/login_icon.png' %}" style="width: 20px;height: 20px;">
+          <a class="nav-link" href="login" style="color: white;"><span class="glyphicon glyphicon-log-in"></span>Login</a>
+      </div>
       </nav>
       <div class="title">
         <h1>The Tshirt Shack!</h1>
