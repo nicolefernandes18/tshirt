@@ -71,4 +71,4 @@ def mencategory(request):
 
     menobjs = Men.objects.all()
 
-    return render(request, 'mencategory.html', {'menobjs': menobjs})
+    return render(request, 'tshirtapp/mencategory.html', {'menobjs': menobjs})
