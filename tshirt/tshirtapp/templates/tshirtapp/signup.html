@@ -5,6 +5,7 @@
         <link rel="stylesheet" type="text/css" href="{% static 'tshirtapp/style.css' %}">
     </head>
     <body>
+        <div class='body-start'>
                 <form class="box" action="signup" method="POST">
                 {% csrf_token %}
                 <img src="{% static 'tshirtapp/logo.jpg' %}">
@@ -23,5 +24,6 @@
             <h2>{{message}}</h2>
             {% endfor %}
             </div>
+        </div>
     </body>
 </html>

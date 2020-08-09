@@ -5,7 +5,7 @@
         <link rel="stylesheet" type="text/css" href="{% static 'tshirtapp/style.css' %}">
     </head>
     <body>
-        
+        <div class='body-start'>
         <form action="login" action="login" method="post">
             {% csrf_token %}
             <div class='form-box'>
@@ -17,5 +17,6 @@
                 or Register using <a href="signup"><strong>Signup</strong></a>
 			</div>
         </form>
+    </div>
     </body>
 </html>
