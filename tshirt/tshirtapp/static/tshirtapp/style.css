@@ -148,3 +148,12 @@ h3{
     color: white;
     font-style: oblique;
 }
+
+.display_dabba{
+	background-color: white;	
+}
+
+.display_dabba img{
+width: 40px;
+height: 60px;
+}
