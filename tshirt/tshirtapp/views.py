@@ -2,6 +2,7 @@ from django.shortcuts import render,redirect
 from .models import Men, Women
 from django.contrib import messages
 from django.contrib.auth.models import User , auth
+from django.http import JsonResponse
 
 # Create your views here.
 def index(request):
@@ -78,3 +79,6 @@ def women(request):
     womenobjs = Women.objects.all()
 
     return render(request, 'tshirtapp/women.html', {'womenobjs': womenobjs})
+
+def updateWomen(request):
+    return JsonResponse('Item was added', safe=False)
