@@ -3,6 +3,7 @@ from .models import Men, Women
 from django.contrib import messages
 from django.contrib.auth.models import User , auth
 from django.http import JsonResponse
+import json
 
 # Create your views here.
 def index(request):
@@ -81,4 +82,26 @@ def women(request):
     return render(request, 'tshirtapp/women.html', {'womenobjs': womenobjs})
 
 def updateWomen(request):
+    data = json.loads(request.body)
+    womenId = data['womenId']
+    action = data['action']
+
+    print('Action: ', action)
+    print('WomenId: ', womenId)
+
+    customer = request.user.customer
+    women_product = Women.objects.get(id = womenId)
+    order, created = Order.objects.get_or_create(customer = customer, complete = False)
+
+    orderItem, created = OrderItem.objects.get_or_create(order = order, women_product = women_product)
+    
+    if action == 'add':
+        orderItem.quantity = (orderItem.quantity + 1)
+    elif action == 'remove':
+        orderItem.quantity = (orderItem.quantity - 1)
+    
+    orderItem.save()
+    
+    if orderItem.quantity <= 0:
+        orderItem.delete()
     return JsonResponse('Item was added', safe=False)
