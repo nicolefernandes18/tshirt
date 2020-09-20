@@ -13,6 +13,20 @@ def index(request):
     }
     return render(request, 'tshirtapp/index.html', context)
 
+def cart(request):
+    
+    context = {
+        
+    }
+    return render(request, 'tshirtapp/cart.html', context)
+
+def checkout(request):
+    
+    context = {
+        
+    }
+    return render(request, 'tshirtapp/checkout.html', context)
+
 def signup(request):
     
     if request.method == 'POST':
