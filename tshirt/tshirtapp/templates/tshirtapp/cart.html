@@ -21,10 +21,10 @@
                     <br>
                     <table class="table">
                         <tr>
-                            <th><h5>Items: <strong>3<!--{{order.get_cart_items}}--></strong></h5></th>
-                            <th><h5>Total:<strong> $43<!--{{order.get_cart_total|floatformat:2}}--></strong></h5></th>
+                            <th><h5>Items: <strong>{{order.get_cart_items}}<!--{{order.get_cart_items}}--></strong></h5></th>
+                            <th><h5>Total:<strong> ${{order.get_cart_total|floatformat:2}}<!--{{order.get_cart_total|floatformat:2}}--></strong></h5></th>
                             <th>
-                                <a  style="float:right; margin:5px;" class="btn btn-success" href="{% url 'checkout' %}">Checkout</a>
+                                <a  style="float:right; margin:5px;" class="btn btn-success" href="checkout">Checkout</a>
                             </th>
                         </tr>
                     </table>
@@ -38,20 +38,23 @@
                         <div style="flex:1"><strong>Quantity</strong></div>
                         <div style="flex:1"><strong>Total</strong></div>
                     </div>
+
+                    {% for item in items %}
                     <div class="cart-row">
-                        <div style="flex:2"><img class="row-image" src="{{item.product.imageURL}}"></div>
-                        <div style="flex:2"><p>Tshirt</p></div>
-                        <div style="flex:1"><p>$20</p></div>
+                        <div style="flex:2"><img class="row-image" src="{{item.product.Image.url}}"></div>
+                        <div style="flex:2"><p>{{item.product.Name}}</p></div>
+                        <div style="flex:1"><p>${{item.product.Price|floatformat:2}}</p></div>
                         <div style="flex:1">
-                            <p class="quantity">2</p>
+                            <p class="quantity">{{item.quantity}}</p>
                             <div class="quantity">
                                 <img data-product="{{item.product.id}}" data-action="add" class="chg-quantity update-cart" src="{% static  'tshirtapp/arrow_Up.png' %}">
                         
                                 <img data-product="{{item.product.id}}" data-action="remove" class="chg-quantity update-cart" src="{% static  'tshirtapp/arrow_Down.png' %}">
                             </div>
                         </div>
-                        <div style="flex:1"><p>$30</p></div>
+                        <div style="flex:1"><p>${{item.get_total}}</p></div>
                     </div>
+                    {% endfor %}
                 </div>
                 
             </div>

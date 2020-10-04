@@ -78,7 +78,7 @@ WSGI_APPLICATION = 'tshirt.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'Tshirt',
+        'NAME': 'Tshirts',
         'USER': 'postgres',
         'PASSWORD': '1234',
         'HOST': 'localhost',

@@ -4,23 +4,15 @@ from django.contrib.auth.models import User
 
 # Create your models here.
 
-class Men(models.Model):
+class Product(models.Model):
 
 
     Name = models.CharField(max_length=100)
     Brand =  models.CharField(max_length=100)
     Size = models.CharField(max_length=100)
-    Price =  models.CharField(max_length=100)
-    Image= models.ImageField(upload_to='pics')
-    
-class Women(models.Model):
-
-
-    W_Name = models.CharField(max_length=100)
-    W_Brand =  models.CharField(max_length=100)
-    W_Size = models.CharField(max_length=100)
-    W_Price =  models.CharField(max_length=100)
-    W_Image= models.ImageField(upload_to='w_pics')
+    Price =  models.FloatField()
+    Image = models.ImageField(upload_to='pics')
+    Gender = models.CharField(max_length=100)
 
 class Customer(models.Model):
 
@@ -41,14 +33,30 @@ class Order(models.Model):
     def __str__(self):
         return str(self.id)
 
+    @property
+    def get_cart_total(self):
+        orderitems = self.orderitem_set.all()
+        total = sum([item.get_total for item in orderitems])
+        return total
+
+    @property
+    def get_cart_items(self):
+        orderitems = self.orderitem_set.all()
+        total = sum([item.quantity for item in orderitems])
+        return total
+
 
 class OrderItem(models.Model):
 
-    men_product = models.ForeignKey(Men, on_delete=models.SET_NULL, blank=True, null=True)
-    women_product = models.ForeignKey(Women, on_delete=models.SET_NULL, blank=True, null=True)
+    product = models.ForeignKey(Product, on_delete=models.SET_NULL, blank=True, null=True)
     order = models.ForeignKey(Order, on_delete=models.SET_NULL, blank=True, null=True)
     quantity = models.IntegerField(default=0, null=True, blank=True)
     date_added = models.DateTimeField(auto_now_add=True)
+
+    @property
+    def get_total(self):
+        total = self.product.Price * self.quantity
+        return total
 
 class ShippingAddress(models.Model):
 

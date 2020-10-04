@@ -1,5 +1,5 @@
 from django.shortcuts import render,redirect
-from .models import Men, Women
+from .models import *
 from django.contrib import messages
 from django.contrib.auth.models import User , auth
 from django.http import JsonResponse
@@ -15,15 +15,32 @@ def index(request):
 
 def cart(request):
     
+    if request.user.is_authenticated:
+        customer = request.user.customer
+        order, created = Order.objects.get_or_create(customer = customer, complete = False)
+        items = order.orderitem_set.all()
+    else:
+        item = []
+        order = {'get_cart_total': 0, 'get_cart_items': 0}
+
     context = {
-        
+        'items': items,
+        'order': order,
     }
     return render(request, 'tshirtapp/cart.html', context)
 
 def checkout(request):
+    if request.user.is_authenticated:
+        customer = request.user.customer
+        order, created = Order.objects.get_or_create(customer = customer, complete = False)
+        items = order.orderitem_set.all()
+    else:
+        item = []
+        order = {'get_cart_total': 0, 'get_cart_items': 0}
     
     context = {
-        
+        'items': items,
+        'order': order,
     }
     return render(request, 'tshirtapp/checkout.html', context)
 
@@ -85,29 +102,28 @@ def login(request):
 
 def mencategory(request):
 
-    menobjs = Men.objects.all()
+    menobjs = Product.objects.filter(Gender = 'M')
 
     return render(request, 'tshirtapp/mencategory.html', {'menobjs': menobjs})
 
 def women(request):
 
-    womenobjs = Women.objects.all()
-
+    womenobjs = Product.objects.filter(Gender = 'F')
     return render(request, 'tshirtapp/women.html', {'womenobjs': womenobjs})
 
-def updateWomen(request):
+def updateItem(request):
     data = json.loads(request.body)
-    womenId = data['womenId']
+    productId = data['productId']
     action = data['action']
 
     print('Action: ', action)
-    print('WomenId: ', womenId)
+    print('Product: ', productId)
 
     customer = request.user.customer
-    women_product = Women.objects.get(id = womenId)
+    product = Product.objects.get(id = productId)
     order, created = Order.objects.get_or_create(customer = customer, complete = False)
 
-    orderItem, created = OrderItem.objects.get_or_create(order = order, women_product = women_product)
+    orderItem, created = OrderItem.objects.get_or_create(order = order, product = product)
     
     if action == 'add':
         orderItem.quantity = (orderItem.quantity + 1)
