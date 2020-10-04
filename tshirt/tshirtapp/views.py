@@ -1,5 +1,5 @@
 from django.shortcuts import render,redirect
-from .models import Men, Women
+from .models import Product
 from django.contrib import messages
 from django.contrib.auth.models import User , auth
 
@@ -69,12 +69,12 @@ def login(request):
 
 def mencategory(request):
 
-    menobjs = Men.objects.all()
+    menobjs = Product.objects.all()
 
     return render(request, 'tshirtapp/mencategory.html', {'menobjs': menobjs})
 
 def women(request):
 
-    womenobjs = Women.objects.all()
+    womenobjs = Product.objects.all()
 
     return render(request, 'tshirtapp/women.html', {'womenobjs': womenobjs})

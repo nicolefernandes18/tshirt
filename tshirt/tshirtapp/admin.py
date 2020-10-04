@@ -1,7 +1,6 @@
 from django.contrib import admin
-from .models import Men, Women
+from .models import Product
 
 # Register your models here.
 
-admin.site.register(Men)
-admin.site.register(Women)
+admin.site.register(Product)
