@@ -1,0 +1,79 @@
+{% load static %}
+<html>
+    <head>
+
+
+    <link rel="stylesheet" type="text/css" href="{% static 'tshirtapp/style.css' %}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+    <script type="text/javascript">
+        var user= '{{request.user}}'
+        
+        function getToken(name) {
+        let cookieValue = null;
+        if (document.cookie && document.cookie !== '') {
+        const cookies = document.cookie.split(';');
+        for (let i = 0; i < cookies.length; i++) {
+            const cookie = cookies[i].trim();
+            // Does this cookie string begin with the name we want?
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+              }
+            }
+          }
+          return cookieValue;
+        }
+        const csrftoken = getToken('csrftoken');
+        </script>
+    </head>
+<body>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="box-element">
+                <a  class="btn btn-outline-dark" href="{% url 'mencategory' %}">&#x2190; Continue Shopping</a>
+
+                <br>
+                <br>
+
+                <table class="table">
+                    <tr>
+                        <th><h5>Items: <strong>{{order.get_cart_items}}</strong></h5></th>
+                        <th><h5>Total:<strong> ${{order.get_cart_total|floatformat:2}}</strong></h5></th>
+                        <th>
+                            <a  style="float:right; margin:5px;" class="btn btn-success" href="{% url 'checkout' %}">Checkout</a>
+                        </th>
+                    </tr>
+                </table>
+            </div>
+
+            <br>
+
+            <div class="box-element">
+                <div class="cart-row">
+                    <div style="flex:2"></div>
+                    <div style="flex:2"><strong>Item</strong></div>
+                    <div style="flex:1"><strong>Price</strong></div>
+                    <div style="flex:1"><strong>Quantity</strong></div>
+                    <div style="flex:1"><strong>Total</strong></div>
+                </div>
+                {% for item in items %}
+                <div class="cart-row">
+                    <div style="flex:2"><img class="row-image" src="{{item.product.Image.url}}"></div>
+                    <div style="flex:2"><p>{{item.product.Name}}</p></div>
+                    <div style="flex:1"><p>{{item.product.Price|floatformat:2}}</p></div>
+                    <div style="flex:1">
+                        <p class="quantity">{{item.quantity}}</p>
+                        <div class="quantity">
+                            <img data-product={{item.product.id}} data-action="add" class="chg-quantity update-cart" src="{% static  'tshirtapp/arrow-up.png' %}">
+                    
+                            <img data-product={{item.product.id}} data-action="remove" class="chg-quantity update-cart" src="{% static  'tshirtapp/arrow-down.png' %}">
+                        </div>
+                    </div>
+                    <div style="flex:1">${{item.get_total}}</div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+            
