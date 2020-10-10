@@ -30,15 +30,13 @@ const csrftoken = getToken('csrftoken');
 
     <div class='display_dabba'>
     
-    {% for womenobj in womenobjs %}
-    {% if womenobj.Gender == 'F' %}
-    <img src="{{womenobj.Image.url}}">
-    <h4>{{womenobj.Name}}</h4>
-    <h4>{{womenobj.Brand}}</h4>
-    <h4>{{womenobj.Size}}</h4>
-    <h4>{{womenobj.Price}}</h4>
-    <button data-women="{{womenobj.id}}" data-action="add" class="btn btn-outline-secondary add-btn update-cart">Add to cart</button>
-    {% endif %}
+    {% for product in products %}
+    <img src="{{product.Image.url}}">
+    <h4>{{product.Name}}</h4>
+    <h4>{{product.Brand}}</h4>
+    <h4>{{product.Size}}</h4>
+    <h4>{{product.Price}}</h4>
+    <button data-product="{{product.id}}" data-action="add" class="btn btn-outline-secondary add-btn update-cart">Add to cart</button>
     {% endfor %}
     </div>  
     

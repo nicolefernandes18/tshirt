@@ -108,8 +108,8 @@ def mencategory(request):
 
 def women(request):
 
-    womenobjs = Product.objects.filter(Gender = 'F')
-    return render(request, 'tshirtapp/women.html', {'womenobjs': womenobjs})
+    products = Product.objects.filter(Gender = 'F')
+    return render(request, 'tshirtapp/women.html', {'products': products})
 
 def updateItem(request):
     data = json.loads(request.body)
