@@ -6,7 +6,7 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
         <script type = 'text/javascript'>
             var user = '{{request.user}}'
-
+            
             function getToken(name) {
                 let cookieValue = null;
                 if (document.cookie && document.cookie !== '') {
@@ -17,12 +17,12 @@
                         if (cookie.substring(0, name.length + 1) === (name + '=')) {
                         cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
                         break;
+                         }
+                        }
+                    }
+                return cookieValue;
             }
-        }
-    }
-    return cookieValue;
-}
-const csrftoken = getToken('csrftoken');
+            const csrftoken = getToken('csrftoken');
 
         </script>
     </head>

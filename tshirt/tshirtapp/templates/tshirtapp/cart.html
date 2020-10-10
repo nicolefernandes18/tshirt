@@ -5,7 +5,27 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1" />
         
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script type = 'text/javascript'>
+        var user = '{{request.user}}'
+        
+        function getToken(name) {
+            let cookieValue = null;
+            if (document.cookie && document.cookie !== '') {
+                    const cookies = document.cookie.split(';');
+                    for (let i = 0; i < cookies.length; i++) {
+                        const cookie = cookies[i].trim();
+        // Does this cookie string begin with the name we want?
+                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                     }
+                    }
+                }
+            return cookieValue;
+        }
+        const csrftoken = getToken('csrftoken');
 
+    </script>
 	
     </head>
     <body>
@@ -48,7 +68,6 @@
                             <p class="quantity">{{item.quantity}}</p>
                             <div class="quantity">
                                 <img data-product="{{item.product.id}}" data-action="add" class="chg-quantity update-cart" src="{% static  'tshirtapp/arrow_Up.png' %}">
-                        
                                 <img data-product="{{item.product.id}}" data-action="remove" class="chg-quantity update-cart" src="{% static  'tshirtapp/arrow_Down.png' %}">
                             </div>
                         </div>

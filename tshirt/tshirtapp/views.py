@@ -107,9 +107,18 @@ def mencategory(request):
     return render(request, 'tshirtapp/mencategory.html', {'menobjs': menobjs})
 
 def women(request):
+    if request.user.is_authenticated:
+        customer = request.user.customer
+        order, created = Order.objects.get_or_create(customer = customer, complete = False)
+        items = order.orderitem_set.all()
+        cartItems = order.get_cart_items
+    else:
+        item = []
+        order = {'get_cart_total': 0, 'get_cart_items': 0}
+        cartItems = order['get_cart_items']
 
     products = Product.objects.filter(Gender = 'F')
-    return render(request, 'tshirtapp/women.html', {'products': products})
+    return render(request, 'tshirtapp/women.html', {'products': products, 'cartItems': cartItems})
 
 def updateItem(request):
     data = json.loads(request.body)
@@ -129,6 +138,8 @@ def updateItem(request):
         orderItem.quantity = (orderItem.quantity + 1)
     elif action == 'remove':
         orderItem.quantity = (orderItem.quantity - 1)
+    
+
     
     orderItem.save()
     
